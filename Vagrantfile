@@ -9,15 +9,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |c|
     vb.customize ["modifyvm", :id, "--ioapic", "on"]
   end
 
-   c.vm.define :dev do |dev|
-    dev.vm.box = "ubuntu/trusty64"
-    dev.vm.network :private_network, ip: "192.168.99.15"
-    dev.ssh.forward_agent = true
-    dev.vm.hostname = "neo4j.zenf.io"
-    dev.vm.synced_folder "files/", "/files" 
-    dev.vm.provision "shell", path: "bootstrap.sh"
+   c.vm.define :neo4j do |neo4j|
+    neo4j.vm.box = "ubuntu/trusty64"
+    neo4j.vm.network :private_network, ip: "192.168.99.15"
+    neo4j.ssh.forward_agent = true
+    neo4j.vm.hostname = "neo4j.zenf.io"
+    neo4j.vm.synced_folder "files/", "/files" 
+    neo4j.vm.provision "shell", path: "bootstrap.sh"
 
-    dev.vm.provision "shell", inline: <<-SHELL
+    neo4j.vm.provision "shell", inline: <<-SHELL
         sudo apt-get install -y unattended-upgrades 
         sudo apt-get install -y software-properties-common
     SHELL
