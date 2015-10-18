@@ -26,5 +26,5 @@ In order to make this work these entries need to be added to you personal ``host
 ```
 
 ## URLs
-*[Neo4J Admin Consol](neo4j.zenf.io:7474)
-*[RethinkDB Admin Panel](db.zenf.io.8080)
+* [Neo4J Admin Consol](http://neo4j.zenf.io:7474)
+* [RethinkDB Admin Panel](http://db.zenf.io.8080)
