@@ -22,4 +22,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |c|
         sudo apt-get install -y software-properties-common
     SHELL
    end
+
+   c.vm.define :db do |db|
+    db.vm.box = "ubuntu/trusty64"
+    db.vm.network :private_network, ip: "192.168.99.16"
+    db.ssh.forward_agent = true
+    db.vm.hostname = "db.zenf.io"
+    db.vm.synced_folder "files/", "/files" 
+    db.vm.provision "shell", path: "bs-rethink.sh"
+
+    db.vm.provision "shell", inline: <<-SHELL
+        sudo apt-get install -y unattended-upgrades 
+        sudo apt-get install -y software-properties-common
+    SHELL
+   end
 end
